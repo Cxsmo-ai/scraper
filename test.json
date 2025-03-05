@@ -6,7 +6,7 @@
       "tv": "ImdbId=%imdbId&Season=%season&Episode=%episode"
     },
     "url": "https://zilean.elfhosted.com/dmm/filtered?%searchPattern",
-    "type": "json",
+    "type": "json_imdb",
     "itemType": "info_hash",
     "infoHashTargetKey": "info_hash",
     "torrentNameTargetKey": "raw_title",
