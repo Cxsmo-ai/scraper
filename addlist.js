@@ -1,4 +1,10 @@
 const addonList = [
+    {
+    title: "Zilean-MM",
+    logo: "https://cdn-icons-png.flaticon.com/512/477/477256.png",
+    description: "Torrentio + MediaFusion + DMM",
+    link: "https://raw.githubusercontent.com/codebutter-bit/scraper/refs/heads/main/zilean.json",
+  },
   {
     title: "Ultra-Fast",
     logo: "./images/ff.png",
