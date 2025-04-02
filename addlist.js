@@ -22,6 +22,12 @@ const addonList = [
     logo: "./images/burger.png",
     description: "A lot of scrapers and a lot more sources!",
     link: "https://raw.githubusercontent.com/codebutter-bit/scraper/refs/heads/main/all-in-one.json",
+  },
+  {
+    title: "Spanish",
+    logo: "./images/spanish.png",
+    description: "Peerflix and Torrentio!",
+    link: "https://raw.githubusercontent.com/codebutter-bit/scraper/refs/heads/main/spanish.json",
   }
   // ,
   // {
