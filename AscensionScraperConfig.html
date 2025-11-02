@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AscensionScraper Config Creator</title>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #212529;
+            --primary-color: #5865F2; /* Discord Blurple */
+            --primary-hover: #4752C4;
+            --border-color: #dee2e6;
+            --input-bg: #f1f3f5;
+            --help-text-color: #6c757d;
+        }
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100%;
+            max-width: 700px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            box-sizing: border-box;
+            margin-top: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 28px;
+        }
+        p {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 30px;
+            color: var(--help-text-color);
+        }
+        .step {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--input-bg);
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(88, 101, 242, 0.2);
+        }
+        .action-button {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 20px;
+        }
+        .action-button:hover {
+            background-color: var(--primary-hover);
+        }
+        .choice-section {
+            border-top: 1px solid var(--border-color);
+            margin-top: 30px;
+            padding-top: 20px;
+        }
+        .choice-section legend {
+            font-size: 1.1em;
+            font-weight: 600;
+            padding: 0;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+        .checkbox-label {
+            display: block;
+            background-color: var(--input-bg);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .checkbox-label:has(input:checked) {
+            background-color: #e7f1ff;
+            border-color: var(--primary-color);
+        }
+        .checkbox-label input {
+            margin-right: 10px;
+        }
+        .details-div {
+            display: none;
+            margin-top: -5px;
+            margin-bottom: 15px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            background-color: #fafafa;
+        }
+        #feedback {
+            margin-top: 15px;
+            color: #28a745;
+            font-weight: bold;
+            height: 20px;
+            text-align: center;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            font-size: 14px;
+            color: var(--help-text-color);
+        }
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>AscensionScraper Config Creator</h1>
+        <p>A complete file with all public scrapers will be created. You can optionally add one or more custom sources below.</p>
+
+        <div class="choice-section">
+            <legend>Add Custom Scraper Sources</legend>
+            
+            <label class="checkbox-label"><input type="checkbox" name="custom-source" value="magnify"> Add Magnify Bitmagnet</label>
+            
+            <label class="checkbox-label"><input type="checkbox" name="custom-source" value="self-hosted-bitmagnet"> Add Self-Hosted Bitmagnet</label>
+            <div id="bitmagnet-details" class="details-div">
+                <div class="step">
+                    <label for="bitmagnet-url">Bitmagnet URL</label>
+                    <input type="text" id="bitmagnet-url" placeholder="e.g., http://127.0.0.1:3567">
+                </div>
+                <div class="step">
+                    <label for="bitmagnet-key">Bitmagnet API Key (Optional)</label>
+                    <input type="text" id="bitmagnet-key" placeholder="Leave blank if not required">
+                </div>
+            </div>
+            
+            <label class="checkbox-label"><input type="checkbox" name="custom-source" value="jackett"> Add Jackett</label>
+            <div id="jackett-details" class="details-div">
+                <div class="step">
+                    <label for="jackett-url">Jackett URL</label>
+                    <input type="text" id="jackett-url" placeholder="e.g., http://127.0.0.1:9117">
+                </div>
+                <div class="step">
+                    <label for="jackett-key">Jackett API Key</label>
+                    <input type="text" id="jackett-key" placeholder="Find this on your Jackett dashboard">
+                </div>
+            </div>
+        </div>
+
+        <button id="generate-btn" class="action-button">Create & Download Config File</button>
+        <div id="feedback"></div>
+        
+        <div class="footer">
+            Created by Cxsmo
+            <br>
+            <a href="https://discord.gg/njSKPUQtFa" target="_blank" rel="noopener noreferrer">Join the DeepFaceLab/Live Discord Server</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sourceCheckboxes = document.querySelectorAll('input[name="custom-source"]');
+            
+            sourceCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    const detailsDivId = checkbox.value === 'self-hosted-bitmagnet' ? 'bitmagnet-details' : (checkbox.value === 'jackett' ? 'jackett-details' : null);
+                    if (detailsDivId) {
+                        document.getElementById(detailsDivId).style.display = checkbox.checked ? 'block' : 'none';
+                    }
+                });
+            });
+
+            document.getElementById('generate-btn').addEventListener('click', () => {
+                const feedbackEl = document.getElementById('feedback');
+                const baseConfig = [
+                  {"name": "Zilean (Movies)","type": "json_imdb","imdbType": "movie","itemType": "info_hash","infoHashTargetKey": "info_hash","torrentNameTargetKey": "raw_title","sizeAttr": "size","searchPattern": {"movie": "ImdbId=%imdbId&Year=%year"},"url": "https://zilean.elfhosted.com/dmm/filtered?%searchPattern"},
+                  {"name": "Zilean (TV)","type": "json_imdb","imdbType": "tv","itemType": "info_hash","infoHashTargetKey": "info_hash","torrentNameTargetKey": "raw_title","sizeAttr": "size","searchPattern": {"tv": "ImdbId=%imdbId&Season=%season&Episode=%episode"},"url": "https://zilean.elfhosted.com/dmm/filtered?%searchPattern"},
+                  {"name": "Mediafusion (Movies)","type": "json_imdb","imdbType": "movie","itemType": "info_hash","infoHashTargetKey": "infoHash","jsonResultsKey": "streams","torrentNameTargetKey": "behaviorHints.filename","sizeAttr": "behaviorHints.videoSize","searchPattern": {"movie": "movie/%imdbId"},"url": "https://mediafusion.elfhosted.com/D-h5XZdc-GKj9tvLuwtL8S-h3Y5RyeMAHw8N_VRjmeON2p2lxdB57OCbAAseop_Rlc5ILHWBji7SX7NX6oG80KBfZpxxzuS-BJLzjSSrxaMhDUzPple7XCZlJq0KkZhF3LpgW78jw2yPHvczj5rZxxbsjwt1VgjkbAcCWyTOPYA-mQSWcYzi-_SVwHNkiKT0HHczOrUzQUOoN9p9G0y6kXqNrzU9Dil1qqGp3MdJrmK_L8li3-9LRvp0bNdtA7_cnhzTPse0vgbcEQKJMLbJwahDnEoaiDfr1jYFPtvaVjFKywts-nU6aXDfGouyXphOhrrgvUJr9UTdGU8zm-c3dKyfiwIJ5zCpBfg1gPESl-67TsResyGmzCYL5fzsXdYGFObUcouAsIZMznN4W96XsJYERj9EC_Yrvz5dvnvWNtWEPJlKHV8HcLfP15iJQEFGdg33otL9HSUk0TmQlZKsvf-gHHLCzMk4y-Tb1gqoQRTk/stream/%searchPattern.json"},
+                  {"name": "Mediafusion (TV)","type": "json_imdb","imdbType": "tv","itemType": "info_hash","infoHashTargetKey": "infoHash","jsonResultsKey": "streams","torrentNameTargetKey": "behaviorHints.filename","sizeAttr": "behaviorHints.videoSize","searchPattern": {"tv": "series/%imdbId:%season:%episode"},"url": "https://mediafusion.elfhosted.com/D-h5XZdc-GKj9tvLuwtL8S-h3Y5RyeMAHw8N_VRjmeON2p2lxdB57OCbAAseop_Rlc5ILHWBji7SX7NX6oG80KBfZpxxzuS-BJLzjSSrxaMhDUzPple7XCZlJq0KkZhF3LpgW78jw2yPHvczj5rZxxbsjwt1VgjkbAcCWyTOPYA-mQSWcYzi-_SVwHNkiKT0HHczOrUzQUOoN9p9G0y6kXqNrzU9Dil1qqGp3MdJrmK_L8li3-9LRvp0bNdtA7_cnhzTPse0vgbcEQKJMLbJwahDnEoaiDfr1jYFPtvaVjFKywts-nU6aXDfGouyXphOhrrgvUJr9UTdGU8zm-c3dKyfiwIJ5zCpBfg1gPESl-67TsResyGmzCYL5fzsXdYGFObUcouAsIZMznN4W96XsJYERj9EC_Yrvz5dvnvWNtWEPJlKHV8HcLfP15iJQEFGdg33otL9HSUk0TmQlZKsvf-gHHLCzMk4y-Tb1gqoQRTk/stream/%searchPattern.json"},
+                  {"name": "Torrentio (Movies)","type": "json_imdb","imdbType": "movie","itemType": "info_hash","infoHashTargetKey": "infoHash","jsonResultsKey": "streams","torrentNameTargetKey": "title","sizePattern": "💾\\s*([\\d.]+)\\s*(GB|MB)","searchPattern": {"movie": "movie/%imdbId"},"url": "https://torrentio.strem.fun/sort=qualitysize|limit=7/stream/%searchPattern.json"},
+                  {"name": "Torrentio (TV)","type": "json_imdb","imdbType": "tv","itemType": "info_hash","infoHashTargetKey": "infoHash","jsonResultsKey": "streams","torrentNameTargetKey": "title","sizePattern": "💾\\s*([\\d.]+)\\s*(GB|MB)","searchPattern": {"tv": "series/%imdbId:%season:%episode"},"url": "https://torrentio.strem.fun/sort=qualitysize|limit=7/stream/%searchPattern.json"},
+                  {"name": "Knightcrawler","type": "json","itemType": "info_hash","infoHashTargetKey": "infoHash","torrentNameTargetKey": "name","jsonResultsKey": null,"sizeAttr": "size","url": "https://knightcrawler.net/api/v1/meta-search?q=%searchPattern"},
+                  {"name": "ThePirateBay","type": "json","itemType": "info_hash","infoHashTargetKey": "info_hash","torrentNameTargetKey": "name","jsonResultsKey": null,"url": "https://apibay.org/q.php?q=%searchPattern&cat=200"},
+                  {"name": "YTS","type": "json_imdb","imdbType": "movie","itemType": "info_hash","jsonResultsKey": "data.movies","infoHashTargetKey": "hash","torrentNameTargetKey": "title_long","searchPattern": {"movie": "api/v2/list_movies.json?query_term=%imdbId"},"url": "https://yts.mx/%searchPattern"},
+                  {"name": "EZTV","type": "html","itemType": "magnet","magnetTargetKey": "a.magnet","url": "https://eztv.re/search/%searchPattern"},
+                  {"name": "TorrentGalaxy","type": "html","itemType": "magnet","magnetTargetKey": "a[href^='magnet:']","url": "https://torrentgalaxy.to/torrents.php?search=%searchPattern"},
+                  {"name": "NYAA.si","type": "html","itemType": "magnet","magnetTargetKey": "a[href^='magnet:']","url": "https://nyaa.si/?q=%searchPattern"},
+                  {"name": "Solidtorrents","type": "json","itemType": "info_hash","infoHashTargetKey": "infohash","torrentNameTargetKey": "title","jsonResultsKey": "results","sizeAttr": "size","url": "https://solidtorrents.net/api/v1/search?q=%searchPattern&sort=seeders"},
+                  {"name": "GloTorrents","type": "html","itemType": "magnet","magnetTargetKey": "a[href^='magnet:']","url": "https://glodls.to/search_results.php?search=%searchPattern"},
+                  {"name": "RuTor","type": "html","itemType": "magnet","magnetTargetKey": "a[href^='magnet:']","url": "http://rutor.info/search/%searchPattern"},
+                  {"name": "LimeTorrents","type": "html","itemType": "magnet","magnetTargetKey": "a[href^='magnet:']","url": "https://www.limetorrents.pro/search/all/%searchPattern/"},
+                  {"name": "TorrentDownloads","type": "html","itemType": "magnet","magnetTargetKey": "a[href^='magnet:']","url": "https://www.torrentdownloads.pro/search/?search=%searchPattern"},
+                  {"name": "1337x","type": "html","itemType": "magnet","magnetTargetKey": "a[href^='magnet:']","url": "https://1337x.to/search/%searchPattern/1/"},
+                  {"name": "Bitlord","type": "html","itemType": "magnet","magnetTargetKey": "a.magnet-button","url": "https://bitlordsearch.com/search?q=%searchPattern"},
+                  {"name": "Zooqle","type": "html","itemType": "magnet","magnetTargetKey": "a[title=Magnet]","url": "https://zooqle.com/search?q=%searchPattern"},
+                  {"name": "BitSearch","type": "html","itemType": "magnet","magnetTargetKey": "a.dl-magnet","url": "https://bitsearch.to/search?q=%searchPattern&sort=seeders"},
+                  {"name": "Pirateiro","type": "html","itemType": "magnet","magnetTargetKey": "a.imagnet","url": "http://pirateiro.com/torrents/?search=%searchPattern"},
+                  {"name": "AnimeTosho","type": "html","itemType": "magnet","magnetTargetKey": "a[href^='magnet:']","url": "https://animetosho.org/search?q=%searchPattern"},
+                  {"name": "Torrentz2","type": "html","itemType": "magnet","magnetTargetKey": "a[href^='magnet:']","url": "https://torrentz2.eu/search?f=%searchPattern"},
+                  {"name": "Btdb","type": "html","itemType": "magnet","magnetTargetKey": "a.magnet","url": "https://btdb.eu/search/%searchPattern/"},
+                  {"name": "YourBittorrent","type": "html","itemType": "magnet","magnetTargetKey": "a[title=Magnet]","url": "https://yourbittorrent.com/?q=%searchPattern"},
+                  {"name": "DIGBT","type": "html","itemType": "magnet","magnetTargetKey": "a[href^='magnet:']","url": "https://www.digbt.org/search/%searchPattern/"}
+                ];
+                
+                let finalConfig = [...baseConfig];
+                let spliceIndex = 6;
+                const selectedSources = Array.from(document.querySelectorAll('input[name="custom-source"]:checked')).map(cb => cb.value);
+
+                if (selectedSources.includes('magnify')) {
+                    const magnifyBitmagnet = {"name": "Bitmagnet (Magnify)", "type": "json", "itemType": "info_hash", "infoHashTargetKey": "info_hash", "torrentNameTargetKey": "name", "jsonResultsKey": "items", "sizeAttr": "size", "url": "https://bitmagnet.magnify.pages.dev/api/search?query=%searchPattern"};
+                    finalConfig.splice(spliceIndex++, 0, magnifyBitmagnet);
+                }
+
+                if (selectedSources.includes('self-hosted-bitmagnet')) {
+                    let url = document.getElementById('bitmagnet-url').value.trim();
+                    const key = document.getElementById('bitmagnet-key').value.trim();
+                    if (!url) {
+                        alert('When adding a self-hosted Bitmagnet, the URL is required.');
+                        return;
+                    }
+                    if (url.endsWith('/')) url = url.slice(0, -1);
+                    
+                    let apiUrl = `${url}/api/search?query=%searchPattern`;
+                    if (key) apiUrl += `&token=${key}`;
+                    
+                    const selfHostedBitmagnet = {"name": "Bitmagnet (Self-Hosted)", "type": "json", "itemType": "info_hash", "infoHashTargetKey": "info_hash", "torrentNameTargetKey": "name", "jsonResultsKey": "items", "sizeAttr": "size", "url": apiUrl};
+                    finalConfig.splice(spliceIndex++, 0, selfHostedBitmagnet);
+                }
+
+                if (selectedSources.includes('jackett')) {
+                    let url = document.getElementById('jackett-url').value.trim();
+                    const key = document.getElementById('jackett-key').value.trim();
+                    if (!url || !key) {
+                        alert('When including Jackett, both the URL and API Key are required.');
+                        return;
+                    }
+                    if (url.endsWith('/')) url = url.slice(0, -1);
+                    
+                    const jackettMovies = {"name": "Jackett (Movies)","type": "json","itemType": "info_hash","infoHashTargetKey": "InfoHash","torrentNameTargetKey": "Title","jsonResultsKey": "Results","url": `${url}/api/v2.0/indexers/all/results?apikey=${key}&Query=%searchPattern&Category[]=2000`};
+                    const jackettTv = {"name": "Jackett (TV)","type": "json","itemType": "info_hash","infoHashTargetKey": "InfoHash","torrentNameTargetKey": "Title","jsonResultsKey": "Results","url": `${url}/api/v2.0/indexers/all/results?apikey=${key}&Query=%searchPattern&Category[]=5000`};
+                    finalConfig.splice(spliceIndex, 0, jackettMovies, jackettTv);
+                }
+
+                const jsonString = JSON.stringify(finalConfig, null, 2);
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const downloadUrl = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = downloadUrl;
+                a.download = 'AscensionScraper.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(downloadUrl);
+                
+                feedbackEl.textContent = 'Download started!';
+                setTimeout(() => { feedbackEl.textContent = ''; }, 3000);
+            });
+        });
+    </script>
+
+</body>
+</html>
